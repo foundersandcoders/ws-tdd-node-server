@@ -1,12 +1,11 @@
-module.exports = (req, res) => {
-  if (req.url == '/') {
-    res.writeHead(200, {'content-type' : "text/html"})
-    res.end('Hello')
-  } else if (req.url =='/blog') {
-    res.writeHead(200, {'content-type' : "text/html"})
-    res.end('Blog')
-  } else {
-    res.writeHead(404, {'content-type' : "text/html"})
-    res.end('Unknown')
-  }
+const router = (request, response) => {
+  if (request.url == '/') {
+    response.writeHead(200, {'content-type' : "text/html"})
+    response.end('Hello')
+  } else if (request.url =='/blog') {
+    response.writeHead(200, {'content-type' : "text/html"})
+    response.end('Blog')
+  } 
 }
+
+module.exports = router;

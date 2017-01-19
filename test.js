@@ -4,7 +4,8 @@ const router = require('./router');
 
 // Setup
 test('Initialise', (t) => {
-  t.ok('yes');
+  let num = 2
+  t.equal(num, 2, 'Should return 2, result =' + num);
   t.end();
 })
 
@@ -22,15 +23,6 @@ test('Blog route', (t) => {
   shot.inject(router, { method: 'get', url: '/blog' }, (res) => {
     t.equal(res.statusCode, 200, 'should respond with status code of 200');
     t.equal(res.payload, 'Blog', 'should return correct response');
-    t.end();
-  })
-})
-
-// Unknown route
-test('Unknown route', (t) => {
-  shot.inject(router, { method: 'get', url: '/elephants' }, (res) => {
-    t.equal(res.statusCode, 404, 'should respond with status code of 200');
-    t.equal(res.payload, 'Unknown', 'should return correct response');
     t.end();
   })
 })
