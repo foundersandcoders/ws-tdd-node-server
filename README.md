@@ -1,4 +1,4 @@
-# Test Driven Development Server with Tape and SHot
+# Test Driven Development Server with Tape and Shot
 
 ## Learning Outcomes
 To understand the potential of faking requests to your server for the purposes of testing responses.
