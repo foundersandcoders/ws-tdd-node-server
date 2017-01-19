@@ -41,33 +41,33 @@ console.log('running');
 
 # Walkthrough
 
-1. Create a new directory and run `npm init` to set up blank project with a package.json.
-2. Create a server file (not needed in this walkthrough but you might as well);
+- Create a new directory and run `npm init` to set up blank project with a package.json.
+- Create a server file (not needed in this walkthrough but you might as well);
 ```
 $ touch server.js
 ```
-3. Create a router file;
+- Create a router file;
 ```
 $ touch router.js
 ```
-4. Install tape, tap-spec and shot as dev dependencies
+- Install tape, tap-spec and shot as dev dependencies
 ```
 $ npm install tape --save-dev && npm install shot --save-dev && npm install tap-spec --save-dev
 ```
-5. Edit your package.json file to set up the following test script
+- Edit your package.json file to set up the following test script
 ```
 "scripts": {
   "test": "node test.js | tap-spec"
 }
 ```
-6. Create a *test.js* file
-7. Inside *test.js*, require tape, shot and router.js;
+- Create a *test.js* file
+- Inside *test.js*, require tape, shot and router.js;
 ```javascript
 const test = require('tape');
 const shot = require('shot');
 const router = require('./router'); // remember: absolute paths are needed for local modules, and no '.js' extension is needed
 ```
-8. Write a test to ensure tape is working;
+- Write a test to ensure tape is working;
 ```javascript
 test('Initialise', (t) => {
   let num = 2
@@ -75,9 +75,9 @@ test('Initialise', (t) => {
   t.end(); // Remember to call t.end() after every test call, to ensure tests run in order
 })
 ```
-9. Run `npm test` in the terminal to check the test is passing-
+- Run `npm test` in the terminal to check the test is passing-
 ![test-1](./docs/test-1.png)
-10. Now let's create a failing test to check your router.js logic...
+- Now let's create a failing test to check your router.js logic...
 ```javascript
 // Home Route
 test('Home route', (t) => {
@@ -94,7 +94,7 @@ We're using tape's t.equal method which takes an initial argument, a comparison 
 Now when you run `npm test` you should see the following error;
 ![test-2](./docs/test-2.png)
 **Invalid dispatch function explained:** - the 'dispatch function' is simply the first argument that shot.inject expects. It is simply the function which the fake request object will be sent into, i.e. your router.js file. So shot is returning an error here with **Invalid dispatch function** as the dispatch function we've given (the contents of router.js) is undefined. Router.js needs to return a function which can take a request and return a response, so let's fix this failing test...
-11. In router.js, add a function called router, that includes arguments *request* and *response*
+- In router.js, add a function called router, that includes arguments *request* and *response*
 ```javascript
 const router = (request, response) => {
 }
@@ -103,14 +103,14 @@ And **export the router function**;
 ```javascript
 module.exports = router
 ```
-12. Add an *if* branch, the condition should be if the url property of the request object matches '/';
+- Add an *if* branch, the condition should be if the url property of the request object matches '/';
 ```javascript
 const router = (request, response) => {
   if (request.url == '/') {
   }
 }
 ```
-13. Next, inside this branch, call the *writeHead* method with a response code of **200** and a header object containing the content-type;
+- Next, inside this branch, call the *writeHead* method with a response code of **200** and a header object containing the content-type;
 ```javascript
 const router = (request, response) => {
   if (request.url == '/') {
@@ -118,7 +118,7 @@ const router = (request, response) => {
   }
 }
 ```
-14. Finally, call the *end* method on the response object, and pass in the payload to be sent to the client;
+- Finally, call the *end* method on the response object, and pass in the payload to be sent to the client;
 ```javascript
 const router = (request, response) => {
   if (request.url == '/') {
@@ -127,9 +127,9 @@ const router = (request, response) => {
   }
 }
 ```
-15. Run `npm test` again to validate
+- Run `npm test` again to validate
 ![test-3](./docs/test-3.png)
-16. You've written your first passing test of your servers logic, congrats! Now you can build on this test by adding another test to check the response payload;
+- You've written your first passing test of your servers logic, congrats! Now you can build on this test by adding another test to check the response payload;
 ```javascript
 test('Home route', (t) => {
   shot.inject(router, { method: 'get', url: '/' }, (res) => {
