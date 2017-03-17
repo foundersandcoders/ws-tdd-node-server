@@ -52,7 +52,7 @@ $ touch router.js
 ```
 - Install tape, tap-spec and shot as dev dependencies
 ```
-$ npm install tape --save-dev && npm install shot --save-dev && npm install tap-spec --save-dev
+$ npm install tape shot tap-spec --save-dev
 ```
 - Edit your package.json file to set up the following test script
 ```
