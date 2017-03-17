@@ -168,6 +168,6 @@ Next, use TDD to add & test the following features :
 2. A new route at '/blog'; if the request method is *get*, respond with a status code of 200, and a JSON object containing an array of three strings...
 3. For the new '/blog' route, if the request method is *post* and the request header contains a key of "password" and a value of "potato", should respond with a status code of 200, with a JSON object containing an array of strings that *includes* what was given as the *request* payload.
   - If the method is post, but the password key/value pair is NOT included in the request, respond with a status code of *403*, and the payload string 'Forbidden'.
-  - If the method is post, and the password key/value pair IS included, BUT no payload is given in the request, then respond with a status code of *302*, and simply a header containing the key "Location", and value "/blog". This is to simulate redirecting a user back to the '/blog' route if they attempt to submit an empty post.
+  - If the method is post, and the password key/value pair IS included, BUT no payload is given in the request, then respond with a status code of *302*, and simply write a header containing the key "Location", and value "/blog". This is to simulate redirecting a user back to the '/blog' route if they attempt to submit an empty post.
 
 Good luck :)
