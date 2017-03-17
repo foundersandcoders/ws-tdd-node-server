@@ -89,7 +89,7 @@ test('Home route', (t) => {
 ```
 Here, shot.inject method is given three arguments (1. the router, 2. the fake request object, and a callback function with the response). We've already required in the router, so here we're saying we want to make a **get** request to the home route (**'/'**), and check the **status code** of the response in the form of *res.statusCode*.
 
-We're using tape's t.equal method which takes an initial argument, a comparison argument, and a string containing a message that should describe the test, and t.equal will only success if the two arguments are equal.
+We're using tape's t.equal method which takes an initial argument, a comparison argument, and a string containing a message that should describe the test, and t.equal will only succeed if the two arguments are equal.
 
 Now when you run `npm test` you should see the following error;
 ![test-2](./docs/test-2.png)
