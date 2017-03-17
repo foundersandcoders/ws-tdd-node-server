@@ -65,7 +65,7 @@ $ npm install tape shot tap-spec --save-dev
 ```javascript
 const test = require('tape');
 const shot = require('shot');
-const router = require('./router'); // remember: absolute paths are needed for local modules, and no '.js' extension is needed
+const router = require('./router'); // remember: absolute paths are needed for local modules, and if you're working with a javascript file, the '.js' extension is not required (you can still add the extension if you like
 ```
 - Write a test to ensure tape is working;
 ```javascript
