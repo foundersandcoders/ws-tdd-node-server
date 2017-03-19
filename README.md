@@ -157,6 +157,7 @@ test('Home route', (t) => {
   })
 })
 ```
+- Run `npm test` to make sure this test fails as expected
 - Now make the test pass by adding 'Hello' to the payload in your home route
 - Finally, call the *end* method on the response object, and pass in the payload to be sent to the client;
 ```javascript
