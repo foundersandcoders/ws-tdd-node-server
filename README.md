@@ -18,67 +18,79 @@ To understand the potential of faking requests to your server for the purposes o
 ```
 You can view the full request/response values available in shots [demonstration](https://github.com/hapijs/shot).
 
-**Note: In order to test you server you will need ensure your internal server logic (router) is in a separate file from the http server itself. For example;**
+# Walkthrough
 
+- Create a new directory and run `npm init` to set up blank project with a package.json.
+- Create a server file (not strictly necessary in this walkthrough but you might as well get the practice of doing a full set up), and enter the necessary code to get your server running;
+```
+$ touch server.js
+```
 ```javascript
-// router.js
-const server = (req, res) => {
-  if (req.url == '/') {
-    res.writeHead(200, {'content-type' : "text/html"})
-    res.end('Hello')
-  }
-}
-module.exports = server;
-
-// server.js
 const http = require('http');
 const hostname = process.env.HOSTNAME || 'localhost';
 const port = process.env.PORT || 4000;
-const router = require('./router');
 
 http.createServer(router).listen(port,
   () => console.log(`Server running at port http://${hostname}:${port}`));
 ```
-
-# Walkthrough
-
-- Create a new directory and run `npm init` to set up blank project with a package.json.
-- Create a server file (not needed in this walkthrough but you might as well);
+- Remember that [`npm start` is a default command](https://docs.npmjs.com/cli/start) that will run `node server.js` unless you specify otherwise. So, if you have called this file server.js, there is no need to write a start script yourself. Type this into your terminal now, just to make sure everything has been written correctly
 ```
-$ touch server.js
-```
-- Create a router file;
-```
-$ touch router.js
+$ npm start
 ```
 - Install tape, tap-spec and shot as dev dependencies
 ```
 $ npm install tape shot tap-spec --save-dev
 ```
-- Edit your package.json file to set up the following test script
+- Create a file to hold your tests
 ```
-"scripts": {
-  "test": "node test.js | tap-spec"
-}
+$ touch test.js
 ```
-- Create a *test.js* file
-- Inside *test.js*, require tape, shot and router.js;
+- Inside *test.js*, require tape and shot;
 ```javascript
 const test = require('tape');
 const shot = require('shot');
-const router = require('./router'); // remember: absolute paths are needed for local modules, and if you're working with a javascript file, the '.js' extension is not required (you can still add the extension if you like
 ```
 - Write a test to ensure tape is working;
 ```javascript
 test('Initialise', (t) => {
   let num = 2
   t.equal(num, 2, 'Should return 2');
-  t.end(); // Remember to call t.end() after every test call, to ensure tests run in order
+  t.end(); // Remember to call t.end() after every test call, to ensure tests run in order. You can also investigate t.plan() in the docs
 })
 ```
+- Edit the test script in your package.json file
+```
+"scripts": {
+  "test": "node test.js | tap-spec"
+}
+```
 - Run `npm test` in the terminal to check the test is passing-
+
 ![test-1](./docs/test-1.png)
-- Now let's create a failing test to check your router.js logic...
+- You're going to start by testing your routes, so create a router file
+```
+$ touch router.js
+```
+- Back in *test.js*, require in your new router file
+```javascript
+const router = require('./router'); // remember: absolute paths are needed for local modules, and if you're working with a javascript file, the '.js' extension is not required (you can still add the extension if you like)
+```
+- Now let's create a failing test to check your router.js logic. Start by describing what you are testing
+```javascript
+// Home Route
+test('Home route', (t) => {
+})
+```
+- Use the shot.inject method, which is given three arguments (1. the router, 2. the fake request object, and a callback function with the response). We've already required in the router, so here we're saying we want to make a **get** request to the home route (**'/'**)
+```javascript
+// Home Route
+test('Home route', (t) => {
+  shot.inject(router, { method: 'get', url: '/' }, (res) => {
+    // we're going to deal with the response here
+  })
+})
+```
+- In this callback, we  want to check the **status code** of the response in the form of *res.statusCode*.
 ```javascript
 // Home Route
 test('Home route', (t) => {
@@ -88,7 +100,6 @@ test('Home route', (t) => {
   })
 })
 ```
-Here, shot.inject method is given three arguments (1. the router, 2. the fake request object, and a callback function with the response). We've already required in the router, so here we're saying we want to make a **get** request to the home route (**'/'**), and check the **status code** of the response in the form of *res.statusCode*.
 
 We're using tape's t.equal method which takes an initial argument, a comparison argument, and a string containing a message that should describe the test, and t.equal will only succeed if the two arguments are equal.
 
@@ -97,7 +108,7 @@ Now when you run `npm test` you should see the following error;
 **Invalid dispatch function explained:** - the 'dispatch function' is simply the first argument that shot.inject expects. It is simply the function which the fake request object will be sent into, i.e. your router.js file. So shot is returning an error here with **Invalid dispatch function** as the dispatch function we've given (the contents of router.js) is undefined. Router.js needs to return a function which can take a request and return a response, so let's fix this failing test...
 - In router.js, add a function called router, that includes arguments *request* and *response*
 ```javascript
-const router = (request, response) => {
+const router = (req, res) => {
 }
 ```
 And **export the router function**;
@@ -106,24 +117,24 @@ module.exports = router
 ```
 - Add an *if* branch, the condition should be if the url property of the request object matches '/';
 ```javascript
-const router = (request, response) => {
-  if (request.url == '/') {
+const router = (req, res) => {
+  if (req.url == '/') {
   }
 }
 ```
 - Next, inside this branch, call the *writeHead* method with a response code of **200** and a header object containing the content-type;
 ```javascript
-const router = (request, response) => {
-  if (request.url == '/') {
-    response.writeHead(200, {'content-type' : "text/html"})
+const router = (req, res) => {
+  if (req.url == '/') {
+    res.writeHead(200, {'content-type' : "text/html"})
   }
 }
 ```
 - Finally, call the *end* method on the response object, and pass in the payload to be sent to the client;
 ```javascript
-const router = (request, response) => {
-  if (request.url == '/') {
-    response.writeHead(200, {'content-type' : "text/html"})
+const router = (req, res) => {
+  if (req.url == '/') {
+    res.writeHead(200, {'content-type' : "text/html"})
     respone.end('Hello')
   }
 }
