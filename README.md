@@ -20,7 +20,13 @@ You can view the full request/response values available in shots [demonstration]
 
 # Walkthrough
 
-- Create a new directory and run `npm init` to set up blank project with a package.json.
+- Create a new directory, move into it, and then set up blank node project with a package.json
+```
+mkdir <<name of directory>> && cd <<name of directory>>
+```
+```
+npm init
+```
 - Create a server file (not strictly necessary in this walkthrough but you might as well get the practice of doing a full set up), and enter the necessary code to get your server running;
 ```
 $ touch server.js
