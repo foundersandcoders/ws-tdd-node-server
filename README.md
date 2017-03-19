@@ -136,7 +136,28 @@ const router = (req, res) => {
   }
 }
 ```
-- Finally, call the *end* method on the response object, and pass in the payload to be sent to the client;
+- Finally, call the *end* method on the response object;
+```javascript
+const router = (req, res) => {
+  if (req.url == '/') {
+    res.writeHead(200, {'content-type' : "text/html"})
+    response.end()
+  }
+}
+```
+- Run `npm test` again to validate
+![test-3](./docs/test-3.png)
+- You've written your first passing test of your servers logic, congrats! Now you can build on this test by adding another test to check the response payload;
+```javascript
+test('Home route has \'hello\' as the payload', (t) => {
+  shot.inject(router, { method: 'get', url: '/' }, (res) => {
+    t.equal(res.payload, 'Hello', 'should return correct response');
+    t.end();
+  })
+})
+```
+- Run `npm test` to make sure this test fails as expected
+- Now make the test pass by adding 'Hello' to the payload in your home route
 ```javascript
 const router = (req, res) => {
   if (req.url == '/') {
@@ -145,9 +166,7 @@ const router = (req, res) => {
   }
 }
 ```
-- Run `npm test` again to validate
-![test-3](./docs/test-3.png)
-- You've written your first passing test of your servers logic, congrats! Now you can build on this test by adding another test to check the response payload;
+- Now refactor, by making your code DRY and putting two assertions into one test
 ```javascript
 test('Home route', (t) => {
   shot.inject(router, { method: 'get', url: '/' }, (res) => {
@@ -157,6 +176,7 @@ test('Home route', (t) => {
   })
 })
 ```
+
 
 ## Next Steps
 
