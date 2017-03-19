@@ -97,7 +97,7 @@ Now when you run `npm test` you should see the following error;
 **Invalid dispatch function explained:** - the 'dispatch function' is simply the first argument that shot.inject expects. It is simply the function which the fake request object will be sent into, i.e. your router.js file. So shot is returning an error here with **Invalid dispatch function** as the dispatch function we've given (the contents of router.js) is undefined. Router.js needs to return a function which can take a request and return a response, so let's fix this failing test...
 - In router.js, add a function called router, that includes arguments *request* and *response*
 ```javascript
-const router = (request, response) => {
+const router = (req, res) => {
 }
 ```
 And **export the router function**;
@@ -106,24 +106,24 @@ module.exports = router
 ```
 - Add an *if* branch, the condition should be if the url property of the request object matches '/';
 ```javascript
-const router = (request, response) => {
-  if (request.url == '/') {
+const router = (req, res) => {
+  if (req.url == '/') {
   }
 }
 ```
 - Next, inside this branch, call the *writeHead* method with a response code of **200** and a header object containing the content-type;
 ```javascript
-const router = (request, response) => {
-  if (request.url == '/') {
-    response.writeHead(200, {'content-type' : "text/html"})
+const router = (req, res) => {
+  if (req.url == '/') {
+    res.writeHead(200, {'content-type' : "text/html"})
   }
 }
 ```
 - Finally, call the *end* method on the response object, and pass in the payload to be sent to the client;
 ```javascript
-const router = (request, response) => {
-  if (request.url == '/') {
-    response.writeHead(200, {'content-type' : "text/html"})
+const router = (req, res) => {
+  if (req.url == '/') {
+    res.writeHead(200, {'content-type' : "text/html"})
     respone.end('Hello')
   }
 }
