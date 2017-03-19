@@ -45,15 +45,10 @@ $ npm install tape shot tap-spec --save-dev
 ```
 $ touch test.js
 ```
-- You're going to start by testing your routes, so create a router file too;
-```
-$ touch router.js
-```
 - Inside *test.js*, require tape, shot and router.js;
 ```javascript
 const test = require('tape');
 const shot = require('shot');
-const router = require('./router'); // remember: absolute paths are needed for local modules, and if you're working with a javascript file, the '.js' extension is not required (you can still add the extension if you like
 ```
 - Write a test to ensure tape is working;
 ```javascript
@@ -71,6 +66,13 @@ test('Initialise', (t) => {
 ```
 - Run `npm test` in the terminal to check the test is passing-
 ![test-1](./docs/test-1.png)
+- You're going to start by testing your routes, so create a router file, and require it into *test.js*;
+```
+$ touch router.js
+```
+```javascript
+const router = require('./router'); // remember: absolute paths are needed for local modules, and if you're working with a javascript file, the '.js' extension is not required (you can still add the extension if you like)
+```
 - Now let's create a failing test to check your router.js logic...
 ```javascript
 // Home Route
