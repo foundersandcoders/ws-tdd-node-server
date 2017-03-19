@@ -141,7 +141,7 @@ const router = (req, res) => {
 const router = (req, res) => {
   if (req.url == '/') {
     res.writeHead(200, {'content-type' : "text/html"})
-    response.end('Hello')
+    response.end()
   }
 }
 ```
@@ -156,6 +156,16 @@ test('Home route', (t) => {
     t.end();
   })
 })
+```
+- Now make the test pass by adding 'Hello' to the payload in your home route
+- Finally, call the *end* method on the response object, and pass in the payload to be sent to the client;
+```javascript
+const router = (req, res) => {
+  if (req.url == '/') {
+    res.writeHead(200, {'content-type' : "text/html"})
+    response.end('Hello')
+  }
+}
 ```
 
 ## Next Steps
