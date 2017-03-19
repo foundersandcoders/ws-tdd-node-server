@@ -149,9 +149,8 @@ const router = (req, res) => {
 ![test-3](./docs/test-3.png)
 - You've written your first passing test of your servers logic, congrats! Now you can build on this test by adding another test to check the response payload;
 ```javascript
-test('Home route', (t) => {
+test('Home route has \'hello\' as the payload', (t) => {
   shot.inject(router, { method: 'get', url: '/' }, (res) => {
-    t.equal(res.statusCode, 200, 'should respond with status code of 200');
     t.equal(res.payload, 'Hello', 'should return correct response');
     t.end();
   })
@@ -167,6 +166,17 @@ const router = (req, res) => {
   }
 }
 ```
+- Now refactor, by making your code DRY and putting two assertions into one test
+```javascript
+test('Home route', (t) => {
+  shot.inject(router, { method: 'get', url: '/' }, (res) => {
+    t.equal(res.statusCode, 200, 'should respond with status code of 200');
+    t.equal(res.payload, 'Hello', 'should return correct response');
+    t.end();
+  })
+})
+```
+
 
 ## Next Steps
 
