@@ -33,8 +33,6 @@ const port = process.env.PORT || 4000;
 http.createServer(router).listen(port,
   () => console.log(`Server running at port http://${hostname}:${port}`));
 ```
-
-```
 - Create a router file;
 ```
 $ touch router.js
