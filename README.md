@@ -1,5 +1,7 @@
 # Test Driven Development Server with Tape and Shot
 
+Credit to [Jen Spencer](https://github.com/jsms90) for support and amendments to this workshop!
+
 ## Learning Outcomes
 To understand the potential of faking requests to your server for the purposes of testing responses.
 
