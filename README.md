@@ -187,7 +187,7 @@ There are a wide range of [request methods](https://github.com/hapijs/shot/blob/
 
 ## Exercises
 
-Next, use TDD to add & test the following features :
+Next, find a partner that you haven't worked with before. Use TDD and the ping-pong method [that you learned in week 2](https://github.com/skibinska/romanizer#ping-pong-programming) to add & test the following features :
 
 1. For unknown routes (e.g '/elephants') respond with a status code of 404, and a message 'unknown uri'
 2. A new route at '/blog'; if the request method is *get*, respond with a status code of 200, and a JSON object containing an array of three strings... (If you get stuck on how to start, have a look at *router.js* and *test.js* in this repo)
