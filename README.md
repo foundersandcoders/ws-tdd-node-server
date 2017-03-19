@@ -41,13 +41,10 @@ $ npm start
 ```
 $ npm install tape shot tap-spec --save-dev
 ```
-- Edit your package.json file to set up the following test script
+- Create a file to hold your tests
 ```
-"scripts": {
-  "test": "node test.js | tap-spec"
-}
+$ touch test.js
 ```
-- Create a *test.js* file
 - You're going to start by testing your routes, so create a router file too;
 ```
 $ touch router.js
@@ -65,6 +62,12 @@ test('Initialise', (t) => {
   t.equal(num, 2, 'Should return 2');
   t.end(); // Remember to call t.end() after every test call, to ensure tests run in order
 })
+```
+- Edit your package.json file to set up the following test script
+```
+"scripts": {
+  "test": "node test.js | tap-spec"
+}
 ```
 - Run `npm test` in the terminal to check the test is passing-
 ![test-1](./docs/test-1.png)
