@@ -141,7 +141,7 @@ const router = (req, res) => {
 const router = (req, res) => {
   if (req.url == '/') {
     res.writeHead(200, {'content-type' : "text/html"})
-    respone.end('Hello')
+    response.end('Hello')
   }
 }
 ```
