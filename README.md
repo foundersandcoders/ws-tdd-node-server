@@ -164,26 +164,10 @@ There are a wide range of [request methods](https://github.com/hapijs/shot/blob/
 
 ## Exercises
 
-In this repo, I've built on this example by adding more tests and more routes. To build on from what I've created, first follow these install steps;
-
-
-1. Clone the repo
-```
-git clone git@github.com:njsfield/tdd-node-server-with-shot-and-tape.git
-```
-2. Install dependencies
-```
-npm install
-```
-3. Run tests (they should be passing)
-```
-npm test
-```
-
 Next, use TDD to add & test the following features :
 
 1. For unknown routes (e.g '/elephants') respond with a status code of 404, and a message 'unknown uri'
-2. A new route at '/blog'; if the request method is *get*, respond with a status code of 200, and a JSON object containing an array of three strings...
+2. A new route at '/blog'; if the request method is *get*, respond with a status code of 200, and a JSON object containing an array of three strings... (If you get stuck on how to start, have a look at *router.js* and *test.js* in this repo)
 3. For the new '/blog' route, if the request method is *post* and the request header contains a key of "password" and a value of "potato", should respond with a status code of 200, with a JSON object containing an array of strings that *includes* what was given as the *request* payload.
   - If the method is post, but the password key/value pair is NOT included in the request, respond with a status code of *403*, and the payload string 'Forbidden'.
   - If the method is post, and the password key/value pair IS included, BUT no payload is given in the request, then respond with a status code of *302*, and simply write a header containing the key "Location", and value "/blog". This is to simulate redirecting a user back to the '/blog' route if they attempt to submit an empty post.
