@@ -18,34 +18,21 @@ To understand the potential of faking requests to your server for the purposes o
 ```
 You can view the full request/response values available in shots [demonstration](https://github.com/hapijs/shot).
 
-**Note: In order to test you server you will need ensure your internal server logic (router) is in a separate file from the http server itself. For example;**
+# Walkthrough
 
+- Create a new directory and run `npm init` to set up blank project with a package.json.
+- Create a server file (not strictly necessary in this walkthrough but you might as well get the practice of doing a full set up), and enter the necessary code to get your server running;
+```
+$ touch server.js
+```
 ```javascript
-// router.js
-const server = (req, res) => {
-  if (req.url == '/') {
-    res.writeHead(200, {'content-type' : "text/html"})
-    res.end('Hello')
-  }
-}
-module.exports = server;
-
-// server.js
 const http = require('http');
 const hostname = process.env.HOSTNAME || 'localhost';
 const port = process.env.PORT || 4000;
-const router = require('./router');
 
 http.createServer(router).listen(port,
   () => console.log(`Server running at port http://${hostname}:${port}`));
 ```
-
-# Walkthrough
-
-- Create a new directory and run `npm init` to set up blank project with a package.json.
-- Create a server file (not needed in this walkthrough but you might as well);
-```
-$ touch server.js
 ```
 - Create a router file;
 ```
