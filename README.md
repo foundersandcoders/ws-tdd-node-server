@@ -65,6 +65,7 @@ test('Initialise', (t) => {
 }
 ```
 - Run `npm test` in the terminal to check the test is passing-
+
 ![test-1](./docs/test-1.png)
 - You're going to start by testing your routes, so create a router file, and require it into *test.js*;
 ```
