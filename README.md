@@ -75,7 +75,22 @@ $ touch router.js
 ```javascript
 const router = require('./router'); // remember: absolute paths are needed for local modules, and if you're working with a javascript file, the '.js' extension is not required (you can still add the extension if you like)
 ```
-- Now let's create a failing test to check your router.js logic...
+- Now let's create a failing test to check your router.js logic. Start by describing what you are testing
+```javascript
+// Home Route
+test('Home route', (t) => {
+})
+```
+- Use the shot.inject method, which is given three arguments (1. the router, 2. the fake request object, and a callback function with the response). We've already required in the router, so here we're saying we want to make a **get** request to the home route (**'/'**)
+```javascript
+// Home Route
+test('Home route', (t) => {
+  shot.inject(router, { method: 'get', url: '/' }, (res) => {
+    // we're going to deal with the response here
+  })
+})
+```
+- In this callback, we  want to check the **status code** of the response in the form of *res.statusCode*.
 ```javascript
 // Home Route
 test('Home route', (t) => {
@@ -85,7 +100,6 @@ test('Home route', (t) => {
   })
 })
 ```
-Here, shot.inject method is given three arguments (1. the router, 2. the fake request object, and a callback function with the response). We've already required in the router, so here we're saying we want to make a **get** request to the home route (**'/'**), and check the **status code** of the response in the form of *res.statusCode*.
 
 We're using tape's t.equal method which takes an initial argument, a comparison argument, and a string containing a message that should describe the test, and t.equal will only succeed if the two arguments are equal.
 
