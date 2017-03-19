@@ -136,7 +136,7 @@ const router = (req, res) => {
   }
 }
 ```
-- Finally, call the *end* method on the response object, and pass in the payload to be sent to the client;
+- Finally, call the *end* method on the response object;
 ```javascript
 const router = (req, res) => {
   if (req.url == '/') {
@@ -159,7 +159,6 @@ test('Home route', (t) => {
 ```
 - Run `npm test` to make sure this test fails as expected
 - Now make the test pass by adding 'Hello' to the payload in your home route
-- Finally, call the *end* method on the response object, and pass in the payload to be sent to the client;
 ```javascript
 const router = (req, res) => {
   if (req.url == '/') {
