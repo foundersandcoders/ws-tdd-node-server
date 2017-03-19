@@ -33,6 +33,10 @@ const port = process.env.PORT || 4000;
 http.createServer(router).listen(port,
   () => console.log(`Server running at port http://${hostname}:${port}`));
 ```
+- Remember that [`npm start` is a default command](https://docs.npmjs.com/cli/start) that will run `node server.js` unless you specify otherwise. So, if you have called this file server.js, there is no need to write a start script yourself. Type this into your terminal now, just to make sure everything has been written correctly
+```
+$ npm start
+```
 - Create a router file;
 ```
 $ touch router.js
