@@ -58,7 +58,7 @@ test('Initialise', (t) => {
   t.end(); // Remember to call t.end() after every test call, to ensure tests run in order
 })
 ```
-- Edit your package.json file to set up the following test script
+- Edit the test script in your package.json file
 ```
 "scripts": {
   "test": "node test.js | tap-spec"
