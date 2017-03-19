@@ -37,10 +37,6 @@ http.createServer(router).listen(port,
 ```
 $ npm start
 ```
-- Create a router file;
-```
-$ touch router.js
-```
 - Install tape, tap-spec and shot as dev dependencies
 ```
 $ npm install tape shot tap-spec --save-dev
@@ -52,6 +48,10 @@ $ npm install tape shot tap-spec --save-dev
 }
 ```
 - Create a *test.js* file
+- You're going to start by testing your routes, so create a router file too;
+```
+$ touch router.js
+```
 - Inside *test.js*, require tape, shot and router.js;
 ```javascript
 const test = require('tape');
