@@ -20,6 +20,8 @@ You can view the full request/response values available in shots [demonstration]
 
 # Walkthrough
 
+Throughout this workshop, it is very important that you don't copy/paste the code, but write each line yourself _and make sure you understand what you're writing_. This may seem unnecessary and slightly irritating, but if you copy/paste now, you will find yourself copy/pasting from your old repos in future. It is far better that you write it from scratch enough times for you to remember it. It's a good idea to give your partner a gentle reminder [when you're pairing too](https://github.com/foundersandcoders/master-reference/blob/master/coursebook/general/tips-for-mentoring.md).
+
 - Create a new directory, move into it, and then set up blank node project with a package.json
 ```
 mkdir <<name of directory>> && cd <<name of directory>>
