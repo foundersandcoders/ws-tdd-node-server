@@ -45,7 +45,7 @@ $ npm install tape shot tap-spec --save-dev
 ```
 $ touch test.js
 ```
-- Inside *test.js*, require tape, shot and router.js;
+- Inside *test.js*, require tape and shot;
 ```javascript
 const test = require('tape');
 const shot = require('shot');
