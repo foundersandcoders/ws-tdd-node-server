@@ -1,3 +1,7 @@
+**Author**: [@njsfield](https://github.com/njsfield)  
+
+**Maintainer**: TBC
+
 # Test Driven Development Server with Tape and Shot
 
 Credit to [Jen Spencer](https://github.com/jsms90) for support and amendments to this workshop!
