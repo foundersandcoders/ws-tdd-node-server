@@ -1,3 +1,6 @@
+**Author**: [@njsfield](https://github.com/njsfield)  
+**Maintainer**: [@njsfield](https://github.com/njsfield)
+
 # Test Driven Development Server with Tape and Shot
 
 Credit to [Jen Spencer](https://github.com/jsms90) for support and amendments to this workshop!
