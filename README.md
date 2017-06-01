@@ -35,16 +35,17 @@ npm init
 ```
 $ touch server.js
 ```
+
 ```javascript
 const http = require('http');
 const hostname = process.env.HOSTNAME || 'localhost';
 const port = process.env.PORT || 4000;
 
-http.createServer(router).listen(port, () => {
+http.createServer().listen(port, () => {
   console.log(`Server running at port http://${hostname}:${port}`)
 });
 ```
-- Remember that [`npm start` is a default command](https://docs.npmjs.com/cli/start) that will run `node server.js` unless you specify otherwise. So, if you have called this file server.js, there is no need to write a start script yourself. Type this into your terminal now, just to make sure everything has been written correctly
+- Remember that [`npm start` is a default command](https://docs.npmjs.com/cli/start) that will run `node server.js` unless you specify otherwise. So, if you have called this file server.js, there is no need to write a start script yourself. Type this into your terminal now, just to make sure everything has been written correctly (N.B. if you go to localhost:4000 in your browser at this stage, it won't load as we haven't any routes yet)
 ```
 $ npm start
 ```
@@ -146,9 +147,21 @@ const router = (req, res) => {
 const router = (req, res) => {
   if (req.url == '/') {
     res.writeHead(200, {'content-type' : "text/html"})
-    response.end()
+    res.end()
   }
 }
+```
+- Update your server.js file so that you are requiring in your router
+
+```javascript
+const http = require('http');
+const hostname = process.env.HOSTNAME || 'localhost';
+const port = process.env.PORT || 4000;
+const router = require('./router');
+
+http.createServer(router).listen(port, () => {
+  console.log(`Server running at port http://${hostname}:${port}`)
+});
 ```
 - Run `npm test` again to validate
 ![test-3](./docs/test-3.png)
@@ -167,7 +180,7 @@ test('Home route - payload', (t) => {
 const router = (req, res) => {
   if (req.url == '/') {
     res.writeHead(200, {'content-type' : "text/html"})
-    response.end('Hello')
+    res.end('Hello')
   }
 }
 ```
