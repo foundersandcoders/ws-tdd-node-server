@@ -1,5 +1,5 @@
 **Author**: [@njsfield](https://github.com/njsfield)  
-**Maintainer**: [@njsfield](https://github.com/njsfield)
+**Maintainer**: TBC
 
 # Test Driven Development Server with Tape and Shot
 
