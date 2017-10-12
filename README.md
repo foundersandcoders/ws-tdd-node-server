@@ -89,7 +89,7 @@ $ touch router.js
 ```
 - Back in *test.js*, require in your new router file
 ```javascript
-const router = require('./router'); // remember: absolute paths are needed for local modules, and if you're working with a javascript file, the '.js' extension is not required (you can still add the extension if you like)
+const router = require('./router'); // remember: relative paths are needed for local modules, and if you're working with a javascript file, the '.js' extension is not required (you can still add the extension if you like)
 ```
 - Now let's create a failing test to check your router.js logic. Start by describing what you are testing
 ```javascript
