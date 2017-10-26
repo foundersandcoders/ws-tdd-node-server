@@ -16,6 +16,14 @@ test('Home route', (t) => {
   })
 })
 
+test('/blog/:blogpost', (t) => {
+  shot.inject(router, { method: 'get', url: '/blog:blogpost' }, (res) => {
+    t.equal(res.statusCode, 200, 'should respond with status code of 200');
+  //  t.equal(res.payload, 'Hello', 'response should contain \'Hello\'');
+    t.end();
+  })
+})
+
 test('Unknown route', (t) => {
   shot.inject(router, { method: 'get', url: '/elephant' }, (res) => {
     t.equal(res.statusCode, 404, 'should respond with status code of 404');
