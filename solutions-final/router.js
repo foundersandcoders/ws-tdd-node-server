@@ -47,7 +47,11 @@ const router = (req, res) => {
 
       }
 
+      else if (req.url ==='/blog/:blogpost' && req.method === 'GET'){
+        res.writeHead(200, {"content-type": "application/json"})
+        res.end('Works for any blogpost');
 
+      }
 
   else {
     res.writeHead(404, {"content-type": "text/html"})
@@ -55,4 +59,4 @@ const router = (req, res) => {
   }
 }
 
-module.exports = router
+module.exports = router;

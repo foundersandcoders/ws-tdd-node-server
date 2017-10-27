@@ -17,9 +17,9 @@ test('Home route', (t) => {
 })
 
 test('/blog/:blogpost', (t) => {
-  shot.inject(router, { method: 'get', url: '/blog:blogpost' }, (res) => {
+  shot.inject(router, { method: 'get', url: '/blog/:blogpost' }, (res) => {
     t.equal(res.statusCode, 200, 'should respond with status code of 200');
-  //  t.equal(res.payload, 'Hello', 'response should contain \'Hello\'');
+    t.equal(res.payload, 'Works for any blogpost', 'response should contain \'blogpost\'');
     t.end();
   })
 })
