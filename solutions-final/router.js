@@ -1,29 +1,25 @@
 const router = (req, res) => {
-  if (req.url === '/') {
-    res.writeHead(200, {'content-type' : "text/html"})
-    res.end('Hello')
-  }
 
-  else if (req.url ==='/blog' && req.method === 'GET'){
+  if (req.url === '/') {
+    res.writeHead(200, {'content-type': "text/html"})
+    res.end('Hello')
+
+  } else if (req.url === '/blog' && req.method === 'GET') {
     res.writeHead(200, {"content-type": "application/json"})
     var arrayObject = JSON.stringify(['cat', 'dog', 'bird'])
     res.end(arrayObject);
 
-  }
-
-  else if (req.url ==='/blog' && req.method === 'POST' && req.headers.password && req.headers.password === 'potato'){
+  } else if (req.url === '/blog' && req.method === 'POST' && req.headers.password && req.headers.password === 'potato') {
     let data = '';
-    req.on('data', (chunk)=> {
-      data+= chunk;
+    req.on('data', (chunk) => {
+      data += chunk;
     });
     req.on('end', () => {
-    res.writeHead(200, {"content-type": "application/json"})
-    res.end(JSON.stringify(JSON.parse(data)));
+      res.writeHead(200, {"content-type": "application/json"})
+      res.end(JSON.stringify(JSON.parse(data)));
     })
 
-  }
-
-  else if (req.url === '/blog' && req.method === 'POST' && req.headers.password) {
+  } else if (req.url === '/blog' && req.method === 'POST' && req.headers.password) {
 
     let data;
 
@@ -38,22 +34,17 @@ const router = (req, res) => {
       res.end();
     });
 
-  }
+  } else if (req.url === '/blog' && req.method === 'POST') {
 
-    else if (req.url === '/blog' && req.method === 'POST') {
+    res.writeHead(403, {'content-type': 'text/html'});
+    res.end('Forbidden');
 
-        res.writeHead(403, {'content-type': 'text/html'});
-        res.end('Forbidden');
+  } else if (req.url === '/blog/:blogpost' && req.method === 'GET') {
 
-      }
+    res.writeHead(200, {"content-type": "application/json"})
+    res.end('Works for any blogpost');
 
-      else if (req.url ==='/blog/:blogpost' && req.method === 'GET'){
-        res.writeHead(200, {"content-type": "application/json"})
-        res.end('Works for any blogpost');
-
-      }
-
-  else {
+  } else {
     res.writeHead(404, {"content-type": "text/html"})
     res.end("unknown uri")
   }
