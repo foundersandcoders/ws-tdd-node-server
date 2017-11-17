@@ -14,11 +14,13 @@ const router = (req, res) => {
     req.on('data', (chunk) => {
       data += chunk;
     });
-    req.on('end', () => {
+    if (data) {
       res.writeHead(200, {"content-type": "application/json"})
-      res.end(JSON.stringify(JSON.parse(data)));
-    })
-
+      res.end(data)
+    } else {
+      res.writeHead(302, {'Location': '/blog'});
+      res.end();
+    }
   } else if (req.url === '/blog' && req.method === 'POST' && req.headers.password) {
 
     let data;
