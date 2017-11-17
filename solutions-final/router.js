@@ -9,7 +9,7 @@ const router = (req, res) => {
     var arrayObject = JSON.stringify(['cat', 'dog', 'bird'])
     res.end(arrayObject);
 
-  } else if (req.url === '/blog' && req.method === 'POST' && req.headers.password && req.headers.password === 'potato') {
+  } else if (req.url === '/blog' && req.method === 'POST' && req.headers.password === 'potato') {
     let data = '';
     req.on('data', (chunk) => {
       data += chunk;

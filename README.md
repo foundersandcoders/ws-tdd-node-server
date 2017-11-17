@@ -6,7 +6,8 @@
 
 Credit to [Jen Spencer](https://github.com/jsms90) for support and amendments to this workshop!
 
- ## __IMPORTANT! Do NOT clone this repo! Repeat: DO NOT CLONE! This whole repo IS the solution to the challenge, so please read below for further instructions__ :wink:
+ ## __IMPORTANT! Do NOT clone this repo!
+ Repeat: DO NOT CLONE! This whole repo IS the solution to the challenge, so please read below for further instructions__ :wink:
 
 ## Learning Outcomes
 To understand the potential of faking requests to your server for the purposes of testing responses, using the tools below:
