@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "node test.js | tap-spec",
-    "start": "node server.js"
+    "start": "node server.js",
+    "solution": "node solutions-final/test.js | tap-spec"
   },
   "author": "",
   "license": "ISC",
