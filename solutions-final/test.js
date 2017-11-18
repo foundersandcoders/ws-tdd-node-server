@@ -62,6 +62,14 @@ test('Blog route tests - post - no password header', (t) => {
 });
 
 test('Blog route - post - password - no payload', (t) => {
+  shot.inject(router, { method: 'post', url: '/blog', headers: {password: 'potato'}}, (res) => {
+    t.equal(res.statusCode, 302, 'Should return 302');
+    t.equal(res.headers.location, '/blog', 'Header should include Location /blog');
+    t.end();
+  });
+});
+
+test('Blog route - post - wrong password - no payload', (t) => {
   shot.inject(router, { method: 'post', url: '/blog', headers: {password: 'noData'}}, (res) => {
     t.equal(res.statusCode, 403, 'Should return 403');
     t.end();
