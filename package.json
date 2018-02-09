@@ -1,18 +1,18 @@
 {
-  "name": "tdd-shot",
+  "name": "server-test-workshop",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js | tap-spec",
+    "test": "node ./test.js | tap-spec",
     "start": "node server.js",
     "solution": "node solutions-final/test.js | tap-spec"
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "shot": "^3.4.0",
+  "dependencies": {
+    "supertest": "^3.0.0",
     "tap-spec": "^4.1.1",
-    "tape": "^4.6.3"
+    "tape": "^4.8.0"
   }
 }
