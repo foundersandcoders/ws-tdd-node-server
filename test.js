@@ -15,7 +15,6 @@ test('Home route', (t) => {
     .expect('Content-Type', /html/)
     .end((err, res) => {
       t.error(err)
-      t.equal(res.statusCode, 200, 'should respond with a status code of 200');
       t.equal(res.text, 'Hello', 'response should contain \'Hello\'');
       t.end();
     });

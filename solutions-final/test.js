@@ -15,7 +15,6 @@ test('check status code is 200', (t) => {
     .expect('Content-Type', /html/)
     .end((err, res) => {
       t.error(err)
-      t.equal(res.statusCode, 200, 'should respond with a status code of 200');
       t.equal(res.text, 'Hello', 'response should contain \'Hello\'');
       t.end();
     });
@@ -29,7 +28,6 @@ test('check status code is 404', (t) => {
     .expect('Content-Type', /html/)
     .end((err, res) => {
       t.error(err)
-      t.equal(res.statusCode, 404, 'should respond with a status code of 404');
       t.equal(res.text, 'unknown uri', 'response should contain \'unknown uri\'');
       t.end();
     });
@@ -43,7 +41,6 @@ test('/blog', (t) => {
     .expect('Content-Type', /json/)
     .end((err, res) => {
       t.error(err)
-      t.equal(res.statusCode, 200, 'should respond with status code of 200');
       t.equal(res.body.length, 3, 'responseObject should contain an array with 3 elements');
       t.equal(typeof res.body[0], 'string', 'first element of an responseObject array should be a string');
       t.equal(typeof res.body[1], 'string', 'second element of an responseObject array should be a string');
@@ -53,20 +50,6 @@ test('/blog', (t) => {
 });
 
 // 3
-test('/blog/blogpost', (t) => {
-  supertest(router)
-    .get('/blog/blogpost')
-    .expect(200)
-    .expect('Content-Type', /json/)
-    .end((err, res) => {
-      t.error(err)
-      t.equal(res.statusCode, 200, 'should respond with status code of 200');
-      t.equal(res.body, 'Works for any blogpost', 'response should contain \'blogpost\'');
-      t.end();
-    });
-});
-
-// 4
 test('Blog route - post - password - payload', (t) => {
   supertest(router)
     .post("/blog")
@@ -76,7 +59,6 @@ test('Blog route - post - password - payload', (t) => {
     .set({ password: 'potato' })
     .end((err, res) => {
       t.error(err)
-      t.equal(res.statusCode, 200, 'Should return 200');
       t.deepEqual(res.body, ['a', 'b'], 'Should return payload');
       t.end();
     });
@@ -89,7 +71,6 @@ test('Blog route test - post - no password header', (t) => {
     .expect('Content-Type', /text/)
     .end((err, res) => {
       t.error(err)
-      t.equal(res.statusCode, 403, 'Should return 403');
       t.equal(res.text, 'Forbidden');
       t.end();
     });
@@ -103,7 +84,6 @@ test('Blog route - post - password - no payload', (t) => {
     .set({ password: 'potato' })
     .end((err, res) => {
       t.error(err)
-      t.equal(res.statusCode, 302, 'Should return 302');
       t.equal(res.headers.location, '/blog', 'Header should include Location /blog');
       t.end();
     });
@@ -116,7 +96,6 @@ test('Blog route - post - wrong password - no payload', (t) => {
     .expect('Content-Type', /html/)
     .end((err, res) => {
       t.error(err)
-      t.equal(res.statusCode, 403, 'Should return 403');
       t.end();
     });
 });

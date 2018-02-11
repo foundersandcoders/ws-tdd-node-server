@@ -30,15 +30,10 @@ const router = (req, res) => {
     res.writeHead(403, { 'content-type': 'text/html' });
     res.end('Forbidden');
 
-  } else if (req.url === '/blog/blogpost' && req.method === 'GET') {
-
-    res.writeHead(200, { "content-type": "application/json" });
-    res.end(JSON.stringify('Works for any blogpost'));
-
   } else {
     res.writeHead(404, { "content-type": "text/html" });
     res.end("unknown uri");
   }
 }
 
-module.exports = router
+module.exports = router;
