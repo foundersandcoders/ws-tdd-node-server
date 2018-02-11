@@ -20,7 +20,7 @@ const router = (req, res) => {
         res.writeHead(200, { "content-type": "application/json" });
         res.end(data);
       } else {
-        res.writeHead(302, { 'Location': '/blog', 'content-type': "application/json" });
+        res.writeHead(302, { 'Location': '/blog' });
         res.end();
       }
     });
