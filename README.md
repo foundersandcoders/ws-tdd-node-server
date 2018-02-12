@@ -100,7 +100,7 @@ const router = require('./router'); // remember: relative paths are needed for l
 test('Home route returns a status code of 200', (t) => {
 })
 ```
-- Supertest is given the argument of ```router```. We then define the type of request (here we are saying we want to make a `get` request to the home route '/' and the content type), and end with a callback function with the error and response.
+- Supertest is given the argument of ```router```. We then define the type of request (here we are saying we want to make a `GET` request to the home route `'/'` and the content type), and end with a callback function with the error and response.
 ```javascript
 // Home Route
 test('Home route returns a status code of 200', (t) => {
@@ -114,7 +114,7 @@ test('Home route returns a status code of 200', (t) => {
 });
 ```
 
-- In this callback, we  want to check the `status code` of the response in the form of `res.statusCode`.
+- In this callback, we  want to check the `status code` of the response in the form of res.statusCode.
 ```javascript
 // Home Route
 test('Home route returns a status code of 200', (t) => {
@@ -145,14 +145,14 @@ And **export the router function**;
 ```javascript
 module.exports = router;
 ```
-- Add an *if* branch, the condition should be if the url property of the request object matches '/';
+- Add an `if` branch, the condition should be if the url property of the request object matches `'/'`;
 ```javascript
 const router = (req, res) => {
   if (req.url == '/') {
   }
 }
 ```
-- Next, inside this branch, call the *writeHead* method with a response code of `200` and a header object containing the content-type;
+- Next, inside this branch, call the `writeHead` method with a response code of `200` and a header object containing the content-type;
 ```javascript
 const router = (req, res) => {
   if (req.url == '/') {
@@ -221,9 +221,9 @@ Extra notes on the `expect` API can be found [here](https://dzone.com/articles/t
 Next, find a partner that you haven't worked with before. Use TDD and the ping-pong method [that you learned in week 1](https://github.com/foundersandcoders/master-reference/blob/master/coursebook/week-1/pair-programming.md) to add & test the following features :
 
 | Exercises  | URL              | Headers              | Body  | Status Code | Response Body |
-|-----------:| -----------------|:--------------------:| -----:|------------:|--------------:|
-| 1          | `GET/elephants`  | N/A                  | N/A   | `404`         |`'unknown uri'`|
-| 2          | `GET/blog`       | N/A                  | N/A   | `200`        | `["one", "two", "three"]` |
-| 3          | `POST/blog`      | `{ password: potato}`| N/A   | `200`         | `['a','b']`|
-| 4          | `POST/blog`      | N/A                  | N/A   | `403`         | `'Forbidden'` |
-| 5          | `POST/blog`      | `{ password: potato}`| N/A   | `302`         | `{ Location : /blog }` |
+|:-----------:|:-----------------:|:--------------------:| -----:|------------:|--------------:|
+|   1        | `GET /elephants`  | N/A                  | N/A   | `404`         |`'unknown uri'`|
+|    2      | `GET /blog`       | N/A                  | N/A   | `200`        | `["one", "two", "three"]` |
+|     3     | `POST /blog`      | `{ password: potato}`|`['a','b']`  | `200`         | `['a','b']`|
+|     4     | `POST /blog`      | N/A                  | N/A   | `403`         | `'Forbidden'` |
+|      5    | `POST /blog`      | `{ password: potato}`| N/A   | `302`         | `{ Location : /blog }` |
