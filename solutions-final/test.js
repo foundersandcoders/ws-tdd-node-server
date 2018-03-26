@@ -80,7 +80,6 @@ test('Blog route - post - password - no payload', (t) => {
   supertest(router)
     .post("/blog")
     .expect(302)
-    .expect('Content-Type', /json/)
     .set({ password: 'potato' })
     .end((err, res) => {
       t.error(err)
@@ -93,7 +92,7 @@ test('Blog route - post - wrong password - no payload', (t) => {
   supertest(router)
     .post("/blog")
     .expect(403)
-    .expect('Content-Type', /html/)
+    .expect('Content-Type', /text/)
     .end((err, res) => {
       t.error(err)
       t.end();
