@@ -10,12 +10,14 @@ const router = (req, res) => {
     res.end(arrayObject);
 
   } else if (req.url === '/blog' && req.method === 'POST' && req.headers.password === 'potato') {
+    console.log('req: ', req.headers)
     let data = '';
     req.on('data', (chunk) => {
       data += chunk;
     });
 
     req.on('end', () => {
+      console.log('req: ', req.body)
       if (data) {
         res.writeHead(200, { "content-type": "application/json" });
         res.end(data);
