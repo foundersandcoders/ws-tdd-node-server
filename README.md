@@ -267,10 +267,10 @@ Extra notes on the `expect` API can be found [here](https://dzone.com/articles/t
 
 Next, find a partner that you haven't worked with before. Use TDD and the ping-pong method [that you learned in week 1](https://github.com/foundersandcoders/master-reference/blob/master/coursebook/week-1/pair-programming.md) to add & test the following features :
 
-| Exercises |       URL        |        Headers        |        Body | Status Code |             Response Body |
-| :-------: | :--------------: | :-------------------: | ----------: | ----------: | ------------------------: |
-|     1     | `GET /elephants` |          N/A          |         N/A |       `404` |           `'unknown uri'` |
-|     2     |   `GET /blog`    |          N/A          |         N/A |       `200` | `["one", "two", "three"]` |
-|     3     |   `POST /blog`   | `{ password: potato}` | `['a','b']` |       `200` |               `['a','b']` |
-|     4     |   `POST /blog`   |          N/A          |         N/A |       `403` |             `'Forbidden'` |
-|     5     |   `POST /blog`   | `{ password: potato}` |         N/A |       `302` |    `{ Location : /blog }` |
+| URL              | Headers               | Body        | Status Code | Response Body             |
+| ---------------- | --------------------- | ----------- | ----------- | ------------------------- |
+| `GET /elephants` | N/A                   | N/A         | `404`       | `'unknown uri'`           |
+| `GET /blog`      | N/A                   | N/A         | `200`       | `["one", "two", "three"]` |
+| `POST /blog`     | `{ password: potato}` | `['a','b']` | `200`       | `['a','b']`               |
+| `POST /blog`     | N/A                   | N/A         | `403`       | `'Forbidden'`             |
+| `POST /blog`     | `{ password: potato}` | N/A         | `302`       | `{ Location : /blog }`    |
