@@ -39,11 +39,11 @@ Throughout this workshop, it is very important that you don't copy/paste the cod
 
 - Create a new directory, move into it, and then set up blank node project with a package.json
 
-```
+```sh
 mkdir <<name of directory>> && cd <<name of directory>>
 ```
 
-```
+```sh
 npm init
 ```
 
@@ -102,7 +102,7 @@ We have to call `t.end()` at the end of every test, to ensure Tape knows there's
 
 Edit the test script in your `package.json` file
 
-```
+```json
 "scripts": {
   "test": "node test.js | tap-spec"
 }
