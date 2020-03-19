@@ -269,7 +269,7 @@ Extra notes on the `expect` API can be found [here](https://dzone.com/articles/t
 
 ## Exercises
 
-Next, find a partner that you haven't worked with before. Use TDD and the ping-pong method [that you learned in week 1](https://github.com/foundersandcoders/master-reference/blob/master/coursebook/week-1/pair-programming.md) to add & test the following features :
+Next, find a partner that you haven't worked with before. Use TDD and the ping-pong method [that you learned in week 1](https://founders-and-coders.gitbook.io/coursebook/documents/pair-programming#methods) to test and implement the following endpoints:
 
 | URL             | Headers                    | Body        | Status Code | Response body             | Response Headers                       |
 | --------------- | -------------------------- | ----------- | ----------- | ------------------------- | -------------------------------------- |
