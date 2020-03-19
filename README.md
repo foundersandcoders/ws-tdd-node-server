@@ -25,7 +25,7 @@ test("route", t => {
     .send(["a", "b"]) // to send a payload
     .set({ Headers }) //setting headers
     .expect(200)
-    .expect("Content-Type", "application/json")
+    .expect("content-type", "application/json")
     .end((err, res) => {
       t.error(err);
       t.end();
@@ -133,7 +133,7 @@ Now let's create a failing test to check your `router.js` logic. Start by descri
 test("Home route returns a status code of 200", t => {});
 ```
 
-We have to pass Supertest our `router` function. We then define the type of request: here we are saying we want to make a `GET` request to the home route `'/'`. We are then expecting to get a response status code of `200` and a `"Content-Type"` header of `"text/plain"`. Supertest will fail our test if these aren't correct. Finally we end with a callback function that is passed any error or response for that request.
+We have to pass Supertest our `router` function. We then define the type of request: here we are saying we want to make a `GET` request to the home route `'/'`. We are then expecting to get a response status code of `200` and a `"content-type"` header of `"text/plain"`. Supertest will fail our test if these aren't correct. Finally we end with a callback function that is passed any error or response for that request.
 
 ```javascript
 // Home Route
@@ -141,7 +141,7 @@ test("Home route returns a status code of 200", t => {
   supertest(router)
     .get("/")
     .expect(200)
-    .expect("Content-Type", "text/plain")
+    .expect("content-type", "text/plain")
     .end((err, res) => {
       // we will deal with the response here
     });
@@ -156,7 +156,7 @@ test("Home route returns a status code of 200", t => {
   supertest(router)
     .get("/")
     .expect(200)
-    .expect("Content-Type", "text/plain")
+    .expect("content-type", "text/plain")
     .end((err, res) => {
       t.error(err);
       t.equal(res.text, "hello");
@@ -246,8 +246,8 @@ Next, find a partner that you haven't worked with before. Use TDD and the ping-p
 
 | URL             | Headers                    | Body        | Status Code | Response body            | Response Headers                       |
 | --------------- | -------------------------- | ----------- | ----------- | ------------------------ | -------------------------------------- |
-| `GET /elephant` | N/A                        | N/A         | `404`       | `"<h1>Not Found</h1>"`   | `{ "Content-Type": "text/html"`        |
-| `GET /blog`     | N/A                        | N/A         | `200`       | `["cat", "dog", "bird"]` | `{ "Content-Type": "application/json"` |
-| `POST /blog`    | `{ Authorization: "123" }` | `["a","b"]` | `200`       | `["a","b"]`              | `{ "Content-Type": "application/json"` |
-| `POST /blog`    | `{ Authorization: "456" }` | N/A         | `401`       | `"Unauthorized"`         | `{ "Content-Type": "text/html"`        |
-| `POST /blog`    | `{ Authorization: "123" }` | N/A         | `302`       | `{ Location : "/blog" }` | `{ Location : "/blog" }`               |
+| `GET /elephant` | N/A                        | N/A         | `404`       | `"<h1>Not Found</h1>"`   | `{ "content-type": "text/html"`        |
+| `GET /blog`     | N/A                        | N/A         | `200`       | `["cat", "dog", "bird"]` | `{ "content-type": "application/json"` |
+| `POST /blog`    | `{ Authorization: "123" }` | `["a","b"]` | `200`       | `["a","b"]`              | `{ "content-type": "application/json"` |
+| `POST /blog`    | `{ Authorization: "456" }` | N/A         | `401`       | `"Unauthorized"`         | `{ "content-type": "text/html"`        |
+| `POST /blog`    | `{ Authorization: "123" }` | N/A         | `302`       | `{ location : "/blog" }` | `{ location : "/blog" }`               |

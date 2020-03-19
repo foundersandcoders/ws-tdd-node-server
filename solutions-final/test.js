@@ -97,7 +97,7 @@ test("Blog route - post - password - no payload", t => {
     .post("/blog")
     .set({ authorization: "123" })
     .expect(302)
-    .expect("Location", "/blog")
+    .expect("location", "/blog")
     .end((err, res) => {
       t.error(err);
       t.end();

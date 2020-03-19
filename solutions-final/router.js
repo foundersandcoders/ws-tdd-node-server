@@ -21,7 +21,7 @@ const router = (req, res) => {
         res.writeHead(200, { "content-type": "application/json" });
         res.end(data);
       } else {
-        res.writeHead(302, { Location: "/blog" });
+        res.writeHead(302, { location: "/blog" });
         res.end();
       }
     });
