@@ -133,7 +133,7 @@ Now let's create a failing test to check your `router.js` logic. Start by descri
 test("Home route returns a status code of 200", t => {});
 ```
 
-Supertest is given the argument of `router`. We then define the type of request (here we are saying we want to make a `GET` request to the home route `'/'` and the content type), and end with a callback function with the error and response.
+We have to pass Supertest our `router` function. We then define the type of request: here we are saying we want to make a `GET` request to the home route `'/'`. We are then expecting to get a response status code of `200` and a `"Content-Type"` header of `"text/plain"`. Supertest will fail our test if these aren't correct. Finally we end with a callback function that is passed any error or response for that request.
 
 ```javascript
 // Home Route
@@ -141,14 +141,14 @@ test("Home route returns a status code of 200", t => {
   supertest(router)
     .get("/")
     .expect(200)
-    .expect("Content-Type", /html/)
+    .expect("Content-Type", "text/plain")
     .end((err, res) => {
       // we will deal with the response here
     });
 });
 ```
 
-In this callback, we want to check the `status code` of the response in the form of res.statusCode.
+In the `.end()` callback we have access to the whole response, so we can make assertions about it.
 
 ```javascript
 // Home Route
@@ -156,16 +156,20 @@ test("Home route returns a status code of 200", t => {
   supertest(router)
     .get("/")
     .expect(200)
-    .expect("Content-Type", /html/)
+    .expect("Content-Type", "text/plain")
     .end((err, res) => {
       t.error(err);
-      t.equal(res.statusCode, 200, "Should return 200"); // note we have used .expect(200) above so this assertion is not neccesary. This is to show you how to check the statusCode in the res.
+      t.equal(res.text, "hello");
       t.end();
     });
 });
 ```
 
-Now when you run `npm test` you should see the following error;
+`t.error()` checks that whatever it was passed is falsy. If it isn't falsy the test fails and Tape assumes it was passed an error object and shows the `.message` property in the terminal.
+
+Here we are checking that our response didn't fail and that our response body was `"hello".
+
+Now when you run `npm test` you should see the following error:
 
 ```
 TypeError: app.address is not a function
@@ -185,7 +189,7 @@ And **export the router function**;
 module.exports = router;
 ```
 
-Add an `if` branch, the condition should be if the url property of the request object matches `'/'`;
+Add an `if` branch for our home route:
 
 ```javascript
 const router = (req, res) => {
@@ -194,28 +198,28 @@ const router = (req, res) => {
 };
 ```
 
-Next, inside this branch, call the `writeHead` method with a response code of `200` and a header object containing the content-type;
-
-```javascript
-const router = (req, res) => {
-  if (req.url == "/") {
-    res.writeHead(200, { "content-type": "text/html" });
-  }
-};
-```
-
-Finally, call the _end_ method on the response object;
+Set the status code and content-type header:
 
 ```javascript
 const router = (req, res) => {
   if (req.url == "/") {
     res.writeHead(200, { "content-type": "text/html" });
-    res.end();
   }
 };
 ```
 
-Update your server.js file so that you are requiring in your router
+Finally, send the response with `.end()`:
+
+```javascript
+const router = (req, res) => {
+  if (req.url == "/") {
+    res.writeHead(200, { "content-type": "text/html" });
+    res.end("hello");
+  }
+};
+```
+
+Update your `server.js` file so that you are requiring in your router
 
 ```javascript
 const http = require("http");
@@ -228,42 +232,11 @@ http.createServer(router).listen(port, hostname, () => {
 });
 ```
 
-Run `npm test` again to validate
-You've written your first passing test of your servers logic, congrats! Now you can build on this test by adding another test to check the response payload;
-
-```javascript
-test("Home route", t => {
-  supertest(router)
-    .get("/")
-    .expect(200)
-    .expect("Content-Type", /html/)
-    .end((err, res) => {
-      t.error(err);
-      t.equal(res.text, "Hello", "response should contain 'Hello'");
-      t.end();
-    });
-});
-```
-
-We're using tape's `t.equal` method which takes an initial argument, a comparison argument, and a string containing a message that should describe the test, and `t.equal` will only succeed if the two arguments are equal.
-
-Also note that we have taken out the `t.equal(res.statusCode, 200, 'Should return 200');` assertion.
-
-Run `npm test` to make sure this test fails as expected
-Now make the test pass by adding `'Hello'` to the payload in your home route
-
-```javascript
-const router = (req, res) => {
-  if (req.url == "/") {
-    res.writeHead(200, { "content-type": "text/html" });
-    res.end("Hello");
-  }
-};
-```
+Run `npm test` again and you should see your test pass.
 
 ## Next Steps
 
-`supertest` introduces the `expect` API, which does some of the work `tape` was doing for us (eg: `res.statusCode` assertions). The [documentation](https://www.npmjs.com/package/supertest#api) indicate that we can use `expect` for testing status codes, header fields, response body, or to pass an arbitrary function to. Combined with [tapes testing methods](https://github.com/substack/tape) you can build a robust set of tests to ensure all your server endpoints are tested.
+`supertest` introduces the `expect` API, which does some of the work `tape` was doing for us (eg: we don't need to manually chcek `res.statusCode`). The [documentation](https://www.npmjs.com/package/supertest#api) indicates that we can use `expect` for testing status codes, header fields, response bodies, or to pass an arbitrary function to. Combined with [tapes testing methods](https://github.com/substack/tape) you can build a robust set of tests to ensure all your server endpoints are tested.
 
 Extra notes on the `expect` API can be found [here](https://dzone.com/articles/testing-http-apis-with-supertest).
 
