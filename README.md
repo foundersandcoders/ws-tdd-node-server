@@ -49,8 +49,8 @@ npm init
 
 - Create a server file (not strictly necessary in this walkthrough but you might as well get the practice of doing a full set up), and enter the necessary code to get your server running;
 
-```
-$ touch server.js
+```sh
+touch server.js
 ```
 
 ```javascript
@@ -65,20 +65,20 @@ http.createServer().listen(port, hostname, () => {
 
 - Remember that [`npm start` is a default command](https://docs.npmjs.com/cli/start) that will run `node server.js` unless you specify otherwise. So, if you have called this file server.js, there is no need to write a start script yourself. Type this into your terminal now, just to make sure everything has been written correctly (N.B. if you go to localhost:4000 in your browser at this stage, it won't load as we haven't any routes yet)
 
-```
-$ npm start
+```sh
+npm start
 ```
 
 - Install tape, tap-spec and supertest as dev dependencies
 
-```
-$ npm install tape supertest tap-spec --save-dev
+```sh
+npm install tape supertest tap-spec --save-dev
 ```
 
 - Create a file to hold your tests
 
-```
-$ touch test.js
+```sh
+touch test.js
 ```
 
 - Inside `test.js`, require tape and supertest;
@@ -112,8 +112,8 @@ test("Initialise", t => {
 
 - You're going to start by testing your routes, so create a router file
 
-```
-$ touch router.js
+```sh
+touch router.js
 ```
 
 - Back in `test.js`, require in your new router file
