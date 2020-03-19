@@ -267,10 +267,10 @@ Extra notes on the `expect` API can be found [here](https://dzone.com/articles/t
 
 Next, find a partner that you haven't worked with before. Use TDD and the ping-pong method [that you learned in week 1](https://github.com/foundersandcoders/master-reference/blob/master/coursebook/week-1/pair-programming.md) to add & test the following features :
 
-| URL             | Headers                    | Body        | Status Code | Response                          |
-| --------------- | -------------------------- | ----------- | ----------- | --------------------------------- |
-| `GET /elephant` | N/A                        | N/A         | `404`       | Body: `"Not Found"`               |
-| `GET /blog`     | N/A                        | N/A         | `200`       | Body: `["one", "two", "three"]`   |
-| `POST /blog`    | `{ Authorization: "123" }` | `["a","b"]` | `200`       | Body: `["a","b"]`                 |
-| `POST /blog`    | `{ Authorization: "456" }` | N/A         | `401`       | Body: `"Unauthorized"`            |
-| `POST /blog`    | `{ Authorization: "123" }` | N/A         | `302`       | Headers: `{ Location : "/blog" }` |
+| URL             | Headers                    | Body        | Status Code | Response body             | Response Headers                       |
+| --------------- | -------------------------- | ----------- | ----------- | ------------------------- | -------------------------------------- |
+| `GET /elephant` | N/A                        | N/A         | `404`       | `"<h1>Not Found</h1>"`    | `{ "Content-Type": "text/html"`        |
+| `GET /blog`     | N/A                        | N/A         | `200`       | `["one", "two", "three"]` | `{ "Content-Type": "application/json"` |
+| `POST /blog`    | `{ Authorization: "123" }` | `["a","b"]` | `200`       | `["a","b"]`               | `{ "Content-Type": "application/json"` |
+| `POST /blog`    | `{ Authorization: "456" }` | N/A         | `401`       | `"Unauthorized"`          | `{ "Content-Type": "text/html"`        |
+| `POST /blog`    | `{ Authorization: "123" }` | N/A         | `302`       | `{ Location : "/blog" }`  | `{ Location : "/blog" }`               |
