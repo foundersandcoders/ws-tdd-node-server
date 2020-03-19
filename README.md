@@ -94,11 +94,13 @@ Write a test to ensure tape is working;
 test("Initialise", t => {
   let num = 2;
   t.equal(num, 2, "Should return 2");
-  t.end(); // Remember to call t.end() after every test call, to ensure tests run in order. You can also investigate t.plan() in the docs
+  t.end();
 });
 ```
 
-Edit the test script in your package.json file
+We have to call `t.end()` at the end of every test, to ensure Tape knows there's no async code running and that it hasn't missed any assertions. You can also investigate `t.plan()` in the docs.
+
+Edit the test script in your `package.json` file
 
 ```
 "scripts": {
@@ -106,7 +108,9 @@ Edit the test script in your package.json file
 }
 ```
 
-Run `npm test` in the terminal to check the test is passing-
+This will tell Node to run our test file, then pipe the result through the `tap-spec` module, which will format it nicely for our terminal.
+
+Run `npm test` in the terminal to check the test is passing
 
 ![test-1](./docs/test-1.png)
 
