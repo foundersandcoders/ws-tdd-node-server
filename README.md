@@ -244,10 +244,10 @@ Extra notes on the `expect` API can be found [here](https://dzone.com/articles/t
 
 Next, find a partner that you haven't worked with before. Use TDD and the ping-pong method [that you learned in week 1](https://founders-and-coders.gitbook.io/coursebook/documents/pair-programming#methods) to test and implement the following endpoints:
 
-| URL             | Headers                    | Body        | Status Code | Response body             | Response Headers                       |
-| --------------- | -------------------------- | ----------- | ----------- | ------------------------- | -------------------------------------- |
-| `GET /elephant` | N/A                        | N/A         | `404`       | `"<h1>Not Found</h1>"`    | `{ "Content-Type": "text/html"`        |
-| `GET /blog`     | N/A                        | N/A         | `200`       | `["one", "two", "three"]` | `{ "Content-Type": "application/json"` |
-| `POST /blog`    | `{ Authorization: "123" }` | `["a","b"]` | `200`       | `["a","b"]`               | `{ "Content-Type": "application/json"` |
-| `POST /blog`    | `{ Authorization: "456" }` | N/A         | `401`       | `"Unauthorized"`          | `{ "Content-Type": "text/html"`        |
-| `POST /blog`    | `{ Authorization: "123" }` | N/A         | `302`       | `{ Location : "/blog" }`  | `{ Location : "/blog" }`               |
+| URL             | Headers                    | Body        | Status Code | Response body            | Response Headers                       |
+| --------------- | -------------------------- | ----------- | ----------- | ------------------------ | -------------------------------------- |
+| `GET /elephant` | N/A                        | N/A         | `404`       | `"<h1>Not Found</h1>"`   | `{ "Content-Type": "text/html"`        |
+| `GET /blog`     | N/A                        | N/A         | `200`       | `["cat", "dog", "bird"]` | `{ "Content-Type": "application/json"` |
+| `POST /blog`    | `{ Authorization: "123" }` | `["a","b"]` | `200`       | `["a","b"]`              | `{ "Content-Type": "application/json"` |
+| `POST /blog`    | `{ Authorization: "456" }` | N/A         | `401`       | `"Unauthorized"`         | `{ "Content-Type": "text/html"`        |
+| `POST /blog`    | `{ Authorization: "123" }` | N/A         | `302`       | `{ Location : "/blog" }` | `{ Location : "/blog" }`               |
