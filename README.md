@@ -193,7 +193,7 @@ Add an `if` branch for our home route:
 
 ```javascript
 const router = (req, res) => {
-  if (req.url == "/") {
+  if (req.url === "/") {
   }
 };
 ```
@@ -202,7 +202,7 @@ Set the status code and content-type header:
 
 ```javascript
 const router = (req, res) => {
-  if (req.url == "/") {
+  if (req.url === "/") {
     res.writeHead(200, { "content-type": "text/html" });
   }
 };
@@ -212,7 +212,7 @@ Finally, send the response with `.end()`:
 
 ```javascript
 const router = (req, res) => {
-  if (req.url == "/") {
+  if (req.url === "/") {
     res.writeHead(200, { "content-type": "text/html" });
     res.end("hello");
   }
