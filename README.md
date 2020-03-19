@@ -63,32 +63,32 @@ http.createServer().listen(port, hostname, () => {
 });
 ```
 
-- Remember that [`npm start` is a default command](https://docs.npmjs.com/cli/start) that will run `node server.js` unless you specify otherwise. So, if you have called this file server.js, there is no need to write a start script yourself. Type this into your terminal now, just to make sure everything has been written correctly (N.B. if you go to localhost:4000 in your browser at this stage, it won't load as we haven't any routes yet)
+Remember that [`npm start` is a default command](https://docs.npmjs.com/cli/start) that will run `node server.js` unless you specify otherwise. So, if you have called this file server.js, there is no need to write a start script yourself. Type this into your terminal now, just to make sure everything has been written correctly (N.B. if you go to localhost:4000 in your browser at this stage, it won't load as we haven't any routes yet)
 
 ```sh
 npm start
 ```
 
-- Install tape, tap-spec and supertest as dev dependencies
+Install tape, tap-spec and supertest as dev dependencies
 
 ```sh
 npm install tape supertest tap-spec --save-dev
 ```
 
-- Create a file to hold your tests
+Create a file to hold your tests
 
 ```sh
 touch test.js
 ```
 
-- Inside `test.js`, require tape and supertest;
+Inside `test.js`, require tape and supertest;
 
 ```javascript
 const test = require("tape");
 const supertest = require("supertest");
 ```
 
-- Write a test to ensure tape is working;
+Write a test to ensure tape is working;
 
 ```javascript
 test("Initialise", t => {
@@ -98,7 +98,7 @@ test("Initialise", t => {
 });
 ```
 
-- Edit the test script in your package.json file
+Edit the test script in your package.json file
 
 ```
 "scripts": {
@@ -106,30 +106,30 @@ test("Initialise", t => {
 }
 ```
 
-- Run `npm test` in the terminal to check the test is passing-
+Run `npm test` in the terminal to check the test is passing-
 
 ![test-1](./docs/test-1.png)
 
-- You're going to start by testing your routes, so create a router file
+You're going to start by testing your routes, so create a router file
 
 ```sh
 touch router.js
 ```
 
-- Back in `test.js`, require in your new router file
+Back in `test.js`, require in your new router file
 
 ```javascript
 const router = require("./router"); // remember: relative paths are needed for local modules, and if you're working with a javascript file, the '.js' extension is not required (you can still add the extension if you like)
 ```
 
-- Now let's create a failing test to check your `router.js` logic. Start by describing what you are testing
+Now let's create a failing test to check your `router.js` logic. Start by describing what you are testing
 
 ```javascript
 // Home Route
 test("Home route returns a status code of 200", t => {});
 ```
 
-- Supertest is given the argument of `router`. We then define the type of request (here we are saying we want to make a `GET` request to the home route `'/'` and the content type), and end with a callback function with the error and response.
+Supertest is given the argument of `router`. We then define the type of request (here we are saying we want to make a `GET` request to the home route `'/'` and the content type), and end with a callback function with the error and response.
 
 ```javascript
 // Home Route
@@ -144,7 +144,7 @@ test("Home route returns a status code of 200", t => {
 });
 ```
 
-- In this callback, we want to check the `status code` of the response in the form of res.statusCode.
+In this callback, we want to check the `status code` of the response in the form of res.statusCode.
 
 ```javascript
 // Home Route
@@ -169,7 +169,7 @@ TypeError: app.address is not a function
 
 This is because we are not exporting our router, which means it cannot be accessed by our test file. So let's get started on our router file.
 
-- In router.js, add a function called router, that includes arguments `req` and `res`
+In router.js, add a function called router, that includes arguments `req` and `res`
 
 ```javascript
 const router = (req, res) => {};
@@ -181,7 +181,7 @@ And **export the router function**;
 module.exports = router;
 ```
 
-- Add an `if` branch, the condition should be if the url property of the request object matches `'/'`;
+Add an `if` branch, the condition should be if the url property of the request object matches `'/'`;
 
 ```javascript
 const router = (req, res) => {
@@ -190,7 +190,7 @@ const router = (req, res) => {
 };
 ```
 
-- Next, inside this branch, call the `writeHead` method with a response code of `200` and a header object containing the content-type;
+Next, inside this branch, call the `writeHead` method with a response code of `200` and a header object containing the content-type;
 
 ```javascript
 const router = (req, res) => {
@@ -200,7 +200,7 @@ const router = (req, res) => {
 };
 ```
 
-- Finally, call the _end_ method on the response object;
+Finally, call the _end_ method on the response object;
 
 ```javascript
 const router = (req, res) => {
@@ -211,7 +211,7 @@ const router = (req, res) => {
 };
 ```
 
-- Update your server.js file so that you are requiring in your router
+Update your server.js file so that you are requiring in your router
 
 ```javascript
 const http = require("http");
@@ -224,8 +224,8 @@ http.createServer(router).listen(port, hostname, () => {
 });
 ```
 
-- Run `npm test` again to validate
-- You've written your first passing test of your servers logic, congrats! Now you can build on this test by adding another test to check the response payload;
+Run `npm test` again to validate
+You've written your first passing test of your servers logic, congrats! Now you can build on this test by adding another test to check the response payload;
 
 ```javascript
 test("Home route", t => {
@@ -245,8 +245,8 @@ We're using tape's `t.equal` method which takes an initial argument, a compariso
 
 Also note that we have taken out the `t.equal(res.statusCode, 200, 'Should return 200');` assertion.
 
-- Run `npm test` to make sure this test fails as expected
-- Now make the test pass by adding `'Hello'` to the payload in your home route
+Run `npm test` to make sure this test fails as expected
+Now make the test pass by adding `'Hello'` to the payload in your home route
 
 ```javascript
 const router = (req, res) => {
