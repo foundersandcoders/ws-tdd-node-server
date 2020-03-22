@@ -203,7 +203,7 @@ Set the status code and content-type header:
 ```javascript
 const router = (req, res) => {
   if (req.url === "/") {
-    res.writeHead(200, { "content-type": "text/html" });
+    res.writeHead(200, { "content-type": "text/plain" });
   }
 };
 ```
@@ -213,7 +213,7 @@ Finally, send the response with `.end()`:
 ```javascript
 const router = (req, res) => {
   if (req.url === "/") {
-    res.writeHead(200, { "content-type": "text/html" });
+    res.writeHead(200, { "content-type": "text/plain" });
     res.end("hello");
   }
 };

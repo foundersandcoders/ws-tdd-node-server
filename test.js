@@ -15,7 +15,7 @@ test("Home route", t => {
     .expect("Content-Type", "text/plain")
     .end((err, res) => {
       t.error(err);
-      t.equal(res.text, "Hello");
+      t.equal(res.text, "hello");
       t.end();
     });
 });
