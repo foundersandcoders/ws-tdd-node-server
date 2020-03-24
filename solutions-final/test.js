@@ -80,7 +80,7 @@ test("Blog route - post - password - payload", t => {
     });
 });
 
-test("Blog route test - post - no password header", t => {
+test("Blog route test - post - no authorization header", t => {
   supertest(router)
     .post("/blog")
     .expect(401)
